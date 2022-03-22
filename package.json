@@ -2,6 +2,9 @@
   "name": "havan-template-frontend",
   "private": true,
   "version": "0.1.0",
+  "bin": {
+    "create-template": "./create-app.js"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
