@@ -39,8 +39,8 @@ async function main() {
     execSync("npm install");
 
     console.log("Removendo arquivos desnecessários...");
-    fs.rmdirSync(path.join(projectPath, ".git"), { recursive: true });
-    fs.rmdirSync(path.join(projectPath, "bin"), { recursive: true });
+    fs.rmSync(path.join(projectPath, ".git"), { recursive: true });
+    fs.rmSync(path.join(projectPath, "bin"), { recursive: true });
 
     console.log("A instalação do template está finalizada!");
   } catch (error) {
