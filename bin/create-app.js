@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { execSync } = require("child_process");
 const path = require("path");
 const fs = require("fs");
@@ -35,7 +36,7 @@ async function main() {
     process.chdir(projectPath);
 
     console.log("Instalando dependências...");
-    execSync("yarn");
+    execSync("npm install");
 
     console.log("Removendo arquivos desnecessários...");
     fs.rmdirSync(path.join(projectPath, ".git"), { recursive: true });

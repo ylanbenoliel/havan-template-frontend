@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "bin": {
-    "create-template": "./create-app.js"
+    "havan-template-frontend": "./create-app.js"
   },
   "scripts": {
     "dev": "vite",
