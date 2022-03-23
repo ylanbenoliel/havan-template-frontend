@@ -6,7 +6,7 @@ const fs = require("fs");
 if (process.argv.length < 3) {
   console.log("Você precisa fornececer um nome para o projeto.");
   console.log("Por exemplo:");
-  console.log("    yarn create template meu-projeto");
+  console.log("    npx @havan/template-frontend meu-projeto");
   process.exit(1);
 }
 

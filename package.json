@@ -1,9 +1,9 @@
 {
-  "name": "havan-template-frontend",
-  "private": true,
+  "name": "@havan/template-frontend",
+  "private": false,
   "version": "0.1.0",
   "bin": {
-    "havan-template-frontend": "./create-app.js"
+    "@havan/template-frontend": "bin/create-app.js"
   },
   "scripts": {
     "dev": "vite",
