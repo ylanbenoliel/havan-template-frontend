@@ -1,35 +1,32 @@
 #!/usr/bin/env node
 const { execSync } = require("child_process");
+const readline = require("readline");
 const path = require("path");
 const fs = require("fs");
 
-if (process.argv.length < 3) {
-  console.log("Você precisa fornececer um nome para o projeto.");
-  console.log("Por exemplo:");
-  console.log("    npx @havan/template-frontend meu-projeto");
-  process.exit(1);
-}
+const project = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-const projectName = process.argv[2];
-const currentPath = process.cwd();
-const projectPath = path.join(currentPath, projectName);
-const git_repo = "https://github.com/ylanbenoliel/havan-template-frontend.git";
+let projectName = "";
+const question = (prompt) => {
+  return new Promise((resolve, reject) => {
+    project.question(prompt, resolve);
+  });
+};
 
-try {
-  fs.mkdirSync(projectPath);
-} catch (err) {
-  if (err.code === "EEXIST") {
-    console.log(
-      `Já existe uma pasta chamada ${projectName}. Tente outro nome.`
-    );
-  } else {
-    console.log(error);
-  }
-  process.exit(1);
-}
-
-async function main() {
+(async () => {
   try {
+    projectName = await question("Qual o nome do projeto? ");
+    project.close();
+
+    const currentPath = process.cwd();
+    const projectPath = path.join(currentPath, projectName);
+    const git_repo =
+      "https://github.com/ylanbenoliel/havan-template-frontend.git";
+
+    fs.mkdirSync(projectPath);
     console.log("Baixando arquivos...");
     execSync(`git clone --depth 1 ${git_repo} ${projectPath}`);
 
@@ -44,7 +41,13 @@ async function main() {
 
     console.log("A instalação do template está finalizada!");
   } catch (error) {
-    console.log(error);
+    if (error.code === "EEXIST") {
+      console.log(
+        `Já existe uma pasta chamada ${projectName}. Tente outro nome.`
+      );
+    } else {
+      console.log(error);
+    }
   }
-}
-main();
+  process.exit(1);
+})();
